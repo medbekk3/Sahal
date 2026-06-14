@@ -1,4 +1,5 @@
 "use client";
+
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -10,11 +11,10 @@ import { PageHero } from "@/components/shared/page-hero";
 import { getRideById } from "@/services/rideService";
 import type { RideResult } from "@/services/rideService";
 
-// إعدادات لتمكين الـ Build بنجاح في وضع التصدير الثابت
-export const dynamicParams = true;
 export async function generateStaticParams() {
   return [];
 }
+
 
 const STATUS_LABELS: Record<string, string> = {
   requested: "بانتظار السائق",
@@ -30,7 +30,6 @@ function formatStatus(status: string) {
 }
 
 export default function RideTrackPage() {
-  // استخدام useParams يتطلب تفعيل "use client" وهو موجود بالفعل
   const params = useParams<{ id: string }>();
   const rideId = params?.id;
   const [ride, setRide] = useState<RideResult | null>(null);
